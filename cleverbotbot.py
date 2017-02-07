@@ -97,7 +97,7 @@ def is_bot_post(message):
 async def on_message(message):
     if message.channel.name == 'cleverbot':
         if not message.author.name == 'cleverbotbot':
-            server = bot.get_server('134842151187120128')
+            server = bot.get_server('')
             channel = discord.utils.get(server.channels, name='cleverbot')
             response = '>> ' + cb2.ask(message.content)
             await bot.send_message(destination=channel, content=response)
