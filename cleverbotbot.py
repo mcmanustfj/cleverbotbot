@@ -1,15 +1,10 @@
 #Discord Cleverbotbot
 import discord
 from discord.ext import commands
-import cleverbot
 import random
 from datetime import datetime
 from gosu_gamers.gg_match import Dota2MatchScraper
 bot = commands.Bot(command_prefix='?', description='2clever4you')
-
-cb1 = cleverbot.Cleverbot()
-cb2 = cleverbot.Cleverbot()
-
 
 starttime = datetime.now()
 
@@ -24,11 +19,6 @@ async def on_ready():
 @bot.command()
 async def uptime():
     await bot.say(datetime.now() - starttime)
-
-@bot.command()
-async def cb(message : str):
-    answer = cb1.ask(message)
-    await bot.say('>> '+answer)
 
 @bot.command(pass_context=True)
 async def server(ctx):
@@ -68,12 +58,6 @@ async def clear(ctx):
     await bot.delete_messages(to_delete)
 
 @bot.command()
-async def refresh():
-    global cb1, cb2
-    cb1 = cleverbot.Cleverbot()
-    cb2 = cleverbot.Cleverbot()
-
-@bot.command()
 async def dotaticker():
     match_scraper = Dota2MatchScraper()
 
@@ -95,12 +79,6 @@ def is_bot_post(message):
 
 @bot.event
 async def on_message(message):
-    if message.channel.name == 'cleverbot':
-        if not message.author.name == 'cleverbotbot':
-            server = bot.get_server('')
-            channel = discord.utils.get(server.channels, name='cleverbot')
-            response = '>> ' + cb2.ask(message.content)
-            await bot.send_message(destination=channel, content=response)
-    await bot.process_commands(message)
+     await bot.process_commands(message)
 
 bot.run('MjEyMzA2NTYwNjc5MDE4NDk3.CoqFTw.e_XEoNKKq6sEBXUiJZG71-uEQTs')
