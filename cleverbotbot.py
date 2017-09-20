@@ -81,4 +81,4 @@ def is_bot_post(message):
 async def on_message(message):
      await bot.process_commands(message)
 
-bot.run('MjEyMzA2NTYwNjc5MDE4NDk3.CoqFTw.e_XEoNKKq6sEBXUiJZG71-uEQTs')
+bot.run('your token here')
